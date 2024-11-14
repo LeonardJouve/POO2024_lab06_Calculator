@@ -4,21 +4,35 @@ import util.Stack;
 
 public class State {
 	private Stack<Double> values = new Stack<>();
-	private double currentValue;
+	private double currentValue = 0;
 	private StringBuilder pendingCurrentValue = new StringBuilder();
 	boolean hasDecimalPoint = false;
 	private double memory = 0;
 
 	public double popValue() {
-		return 0;
+		return values.pop();
 	}
 
 	public void pushValue(Double value) {
+		values.push(value);
+	}
 
+	public String[] toStringArray() {
+		return values.toStringArray();
+	}
+
+	public boolean hasEmptyStack() {
+		return values.isEmpty();
+	}
+
+	public String getPendingCurrentValue() {
+		return pendingCurrentValue.toString();
 	}
 
 	public void acceptCurrentValue() {
 		currentValue = Double.parseDouble(pendingCurrentValue.toString());
+		pushValue(currentValue);
+		hasDecimalPoint = false;
 		pendingCurrentValue = new StringBuilder();
 	}
 
@@ -40,8 +54,20 @@ public class State {
 	}
 
 	public void addDecimalPoint() {
+		if (pendingCurrentValue.charAt(pendingCurrentValue.length() - 1) == '.') {
+			return;
+		}
+
 		hasDecimalPoint = true;
 		pendingCurrentValue.append(".");
+	}
+
+	public void negateCurrentValue() {
+		if (pendingCurrentValue.charAt(0) == '-') {
+			pendingCurrentValue.deleteCharAt(0);
+		} else {
+			pendingCurrentValue.insert(0, "-");
+		}
 	}
 
 	public double getCurrentValue() {

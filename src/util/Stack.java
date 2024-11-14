@@ -47,14 +47,14 @@ public class Stack<T> implements Iterable<T> {
         return size == 0;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
+    public String[] toStringArray() {
+        String[] values = new String[size];
+        int i = 0;
         for (T value : this) {
-            sb.append(value).append("\n");
+            values[i++] = value.toString();
         }
 
-        return sb.toString();
+        return values;
     }
 
     @Override
