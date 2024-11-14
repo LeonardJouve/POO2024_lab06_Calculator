@@ -4,19 +4,16 @@ import calculator.State;
 
 import java.util.NoSuchElementException;
 
-public abstract class UnaryOperator extends Operator {
-    public UnaryOperator(State state) {
+public class MemoryStore extends Operator {
+    public MemoryStore(State state) {
         super(state);
     }
-
-    public abstract double operate(double operand);
 
     @Override
     public void execute() {
         if (getState().hasEmptyStack()) throw new NoSuchElementException();
 
-        double operand = getState().popValue();
-
-        getState().pushValue(operate(operand));
+        double value = getState().popValue();
+        getState().setMemory(value);
     }
 }
