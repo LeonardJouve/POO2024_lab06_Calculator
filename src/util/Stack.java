@@ -32,8 +32,7 @@ public class Stack<T> implements Iterable<T> {
         Object[] values = new Object[size];
         int i = 0;
 
-        T value;
-        while ((value = iterator().next()) != null) {
+        for (T value : this) {
             values[i++] = value;
         }
 
@@ -50,21 +49,22 @@ public class Stack<T> implements Iterable<T> {
 
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        StringBuilder sb = new StringBuilder();
+        for (T value : this) {
+            sb.append(value).append("\n");
+        }
+
+        return sb.toString();
     }
 
     @Override
     public Iterator<T> iterator() {
-        return new NodeIterator<>(head);
+        return new NodeIterator<>(new Node<>(null, head));
     }
 
     private static class Node<T> {
         private final T value;
         private final Node<T> next;
-
-        public Node(T value) {
-            this(value, null);
-        }
 
         public Node(T value, Node<T> next) {
             this.value = value;
@@ -89,7 +89,7 @@ public class Stack<T> implements Iterable<T> {
 
         @Override
         public boolean hasNext() {
-            return value != null && value.next == null;
+            return value != null && value.next != null;
         }
 
         @Override
