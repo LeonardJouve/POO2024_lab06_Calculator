@@ -1,6 +1,6 @@
 package calculator;
 
-import calculator.operators.Operator;
+import calculator.Operator;
 
 import java.awt.Color;
 import java.awt.Font;
