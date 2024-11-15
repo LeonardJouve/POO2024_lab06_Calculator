@@ -8,9 +8,8 @@ public class Addition extends Operator {
 	@Override
 	void execute() {
 		getState().acceptCurrentValue();
-		if (getState().stackIsEmpty() || getState().currentValueIsEmpty()) {
+		if (getState().stackIsEmpty()) {
 			getState().raiseError();
-			return;
 		}
 
 		if (hasError()) return;
