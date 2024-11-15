@@ -1,4 +1,6 @@
-package calculator;
+package calculator.operators;
+
+import calculator.State;
 
 public class DecimalPoint extends Operator {
 

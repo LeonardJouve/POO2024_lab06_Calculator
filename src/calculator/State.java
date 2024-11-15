@@ -2,35 +2,19 @@ package calculator;
 
 import util.Stack;
 
-import java.util.Arrays;
-
 public class State {
 	private Stack<Double> values = new Stack<>();
+
 	private Double currentValue = null;
-	private StringBuilder pendingCurrentValue = new StringBuilder();
+
+	private StringBuilder pendingCurrentValue = new StringBuilder("0");
 	boolean hasDecimalPoint = false;
-	private double memory = 0;
 
-	public double popValue() {
-		return values.pop();
-	}
+	private Double memory = null;
 
-	public void pushValue(Double value) {
-		values.push(value);
-	}
 
-	public void acceptCurrentValue() {
-		currentValue = Double.parseDouble(pendingCurrentValue.toString());
-		pendingCurrentValue = new StringBuilder();
-	}
 
-	public String getCurrentTextValue() {
-		return pendingCurrentValue.isEmpty() ? "0" : pendingCurrentValue.toString();
-	}
-
-	public void clearCurrentValue() {
-		currentValue = null;
-	}
+	// User input
 
 	public void addDigit(int digit) {
 		if (currentValue != null) {
@@ -61,6 +45,19 @@ public class State {
 		pendingCurrentValue.append('.');
 	}
 
+	public String getCurrentTextValue() {
+		return pendingCurrentValue.isEmpty() ? "0" : pendingCurrentValue.toString();
+	}
+
+	public void clearCurrentValue() {
+		currentValue = null;
+	}
+
+	public void clearInput() {
+		pendingCurrentValue = new StringBuilder("0");
+		hasDecimalPoint = false;
+	}
+
 	public Double getCurrentValue() {
 		return currentValue;
 	}
@@ -69,30 +66,31 @@ public class State {
 		this.currentValue = currentValue;
 	}
 
+	// Stack
+
 	public void setMemory(double value) {
 		this.memory = value;
 	}
 
-	public double getMemory() {
+	public Double getMemory() {
 		return memory;
 	}
 
-	public void clearInput() {
-		pendingCurrentValue = new StringBuilder("0");
+	public void clearMemory() {
+		this.memory = null;
 	}
 
-	public void clearError() {
-		// TODO: add error handling
-		clearCurrentValue();
-		clearInput();
-		hasDecimalPoint = false;
+	// Stack
+	public double popValue() {
+		return values.pop();
 	}
 
-	public void clear() {
-		clearError();
+	public void pushValue(Double value) {
+		values.push(value);
+	}
 
+	public void clearStack() {
 		values = new Stack<>();
-		// TODO: is it necessary to remove memorized value?
 	}
 
 	public String[] getStackAsStringArray() {
@@ -105,5 +103,10 @@ public class State {
 		}
 
 		return result;
+	}
+
+	// Error
+	public void clearError() {
+		// TODO add error handling
 	}
 }

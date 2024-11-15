@@ -1,4 +1,6 @@
-package calculator;
+package calculator.operators;
+
+import calculator.State;
 
 public class Digit extends Operator {
 	int digit;
