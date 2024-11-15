@@ -36,7 +36,8 @@ public class JCalculator extends JFrame
 	private void update()
 	{
 		jNumber.setText(state.getCurrentTextValue());
-		// Modifier un composant liste, JList.setListData(Object[] tableau)
+		var stackStringArray = state.getStackAsStringArray();
+		jStack.setListData(stackStringArray.length == 0 ? empty : stackStringArray);
 	}
 
 	// Ajout d'un bouton dans l'interface et de l'operation associee,
@@ -101,7 +102,7 @@ public class JCalculator extends JFrame
 		addOperatorButton("+/-", 1, 5, Color.BLUE, null);
 
 		// Operateur point (chiffres apres la virgule ensuite)
-		addOperatorButton(".", 2, 5, Color.BLUE, null);
+		addOperatorButton(".", 2, 5, Color.BLUE, new DecimalPoint(state));
 
 		// Operateurs arithmetiques a deux operandes: /, *, -, +
 		addOperatorButton("/", 3, 2, Color.RED, null);
@@ -115,7 +116,7 @@ public class JCalculator extends JFrame
 		addOperatorButton("Sqrt", 4, 4, Color.RED, null);
 
 		// Entree: met la valeur courante sur le sommet de la pile
-		addOperatorButton("Ent", 4, 5, Color.RED, null);
+		addOperatorButton("Ent", 4, 5, Color.RED, new AddToStack(state));
 
 		// Affichage de la pile
 		JLabel jLabel = new JLabel("Stack");
