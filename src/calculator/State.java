@@ -54,8 +54,13 @@ public class State {
 	}
 
 	public void acceptCurrentValue() {
-		double value = Double.parseDouble(pendingCurrentValue.toString());
-		setCurrentValue(value);
+		try {
+			double value = Double.parseDouble(pendingCurrentValue.toString());
+
+			setCurrentValue(value);
+		} catch (NumberFormatException e) {
+			raiseError();
+		}
 
 		clearInput();
 	}
@@ -64,8 +69,12 @@ public class State {
 		currentValue = null;
 	}
 
+	public boolean currentValueIsEmpty() {
+		return currentValue == null;
+	}
+
 	public void clearInput() {
-		pendingCurrentValue = new StringBuilder("0");
+		pendingCurrentValue = new StringBuilder();
 		hasDecimalPoint = false;
 	}
 
@@ -79,7 +88,6 @@ public class State {
 	}
 
 	// Stack
-
 	public void setMemory(double value) {
 		this.memory = value;
 	}
@@ -103,6 +111,10 @@ public class State {
 
 	public void clearStack() {
 		values = new Stack<>();
+	}
+
+	public boolean stackIsEmpty() {
+		return values.isEmpty();
 	}
 
 	public String[] getStackAsStringArray() {

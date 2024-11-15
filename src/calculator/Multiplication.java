@@ -7,6 +7,7 @@ public class Multiplication extends Operator {
 
 	@Override
 	void execute() {
+		if (hasError()) return;
 
 	}
 }

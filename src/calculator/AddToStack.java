@@ -8,6 +8,8 @@ public class AddToStack extends Operator {
 
 	@Override
 	void execute() {
+		if (hasError()) return;
+
 		getState().acceptCurrentValue();
 
 		getState().pushValue(getState().getCurrentValue());

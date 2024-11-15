@@ -10,10 +10,13 @@ public class Digit extends Operator {
 
 	@Override
 	void execute() {
+		if (hasError()) return;
+
 		Double currentValue = getState().getCurrentValue();
 		if (currentValue != null) {
 			getState().pushValue(currentValue);
 			getState().clearCurrentValue();
+			getState().clearInput();
 		}
 
 		getState().addDigit(digit);

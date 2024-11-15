@@ -8,6 +8,8 @@ public class DecimalPoint extends Operator {
 
 	@Override
 	void execute() {
+		if (hasError()) return;
+
 		getState().addDecimalPoint();
 	}
 }
