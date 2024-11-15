@@ -11,6 +11,7 @@ public class State {
 	boolean hasDecimalPoint = false;
 
 	private Double memory = null;
+	private boolean error = false;
 
 
 
@@ -52,6 +53,13 @@ public class State {
 		return pendingCurrentValue.isEmpty() ? "0" : pendingCurrentValue.toString();
 	}
 
+	public void acceptCurrentValue() {
+		double value = Double.parseDouble(pendingCurrentValue.toString());
+		setCurrentValue(value);
+
+		clearInput();
+	}
+
 	public void clearCurrentValue() {
 		currentValue = null;
 	}
@@ -67,6 +75,7 @@ public class State {
 
 	public void setCurrentValue(double currentValue) {
 		this.currentValue = currentValue;
+		pendingCurrentValue = new StringBuilder(String.valueOf(currentValue));
 	}
 
 	// Stack
@@ -110,6 +119,14 @@ public class State {
 
 	// Error
 	public void clearError() {
-		// TODO add error handling
+		error = false;
+	}
+
+	public void raiseError() {
+		error = true;
+	}
+
+	public boolean hasError() {
+		return error;
 	}
 }

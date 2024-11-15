@@ -1,7 +1,5 @@
 package calculator;
 
-import calculator.Operator;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -22,6 +20,9 @@ public class JCalculator extends JFrame
 	// Tableau representant une pile vide
 	private static final String[] empty = { "< empty stack >" };
 
+	// Texte d'erreur
+	private static final String error = "ERREUR";
+
 	// Zone de texte contenant la valeur introduite ou resultat courant
 	private final JTextField jNumber = new JTextField("0");
 
@@ -37,7 +38,7 @@ public class JCalculator extends JFrame
 	// Mise a jour de l'interface apres une operation (jList et jStack)
 	private void update()
 	{
-		jNumber.setText(state.getCurrentTextValue());
+		jNumber.setText(state.hasError() ? error : state.getCurrentTextValue());
 		var stackStringArray = state.getStackAsStringArray();
 		jStack.setListData(stackStringArray.length == 0 ? empty : stackStringArray);
 	}
@@ -110,7 +111,7 @@ public class JCalculator extends JFrame
 		addOperatorButton("/", 3, 2, Color.RED, null);
 		addOperatorButton("*", 3, 3, Color.RED, null);
 		addOperatorButton("-", 3, 4, Color.RED, null);
-		addOperatorButton("+", 3, 5, Color.RED, null);
+		addOperatorButton("+", 3, 5, Color.RED, new Addition(state));
 
 		// Operateurs arithmetiques a un operande: 1/x, x^2, Sqrt
 		addOperatorButton("1/x", 4, 2, Color.RED, null);

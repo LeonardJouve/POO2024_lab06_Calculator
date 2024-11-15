@@ -7,6 +7,11 @@ public class Addition extends Operator {
 
 	@Override
 	void execute() {
+		getState().acceptCurrentValue();
 
+		double a = getState().getCurrentValue();
+		double b = getState().popValue();
+
+		getState().setCurrentValue(a + b);
 	}
 }
