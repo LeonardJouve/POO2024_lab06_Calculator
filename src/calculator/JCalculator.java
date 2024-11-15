@@ -23,6 +23,9 @@ public class JCalculator extends JFrame
 	// Texte d'erreur
 	private static final String error = "ERREUR";
 
+	// Zéro
+	private static final String zero = "0";
+
 	// Zone de texte contenant la valeur introduite ou resultat courant
 	private final JTextField jNumber = new JTextField("0");
 
@@ -38,7 +41,17 @@ public class JCalculator extends JFrame
 	// Mise a jour de l'interface apres une operation (jList et jStack)
 	private void update()
 	{
-		jNumber.setText(state.hasError() ? error : state.getCurrentTextValue());
+		String text;
+		if (state.hasError()) {
+			text = error;
+		} else if (state.hasInput()) {
+			text = state.getCurrentTextValue();
+		} else {
+			text = zero;
+		}
+
+		jNumber.setText(text);
+
 		var stackStringArray = state.getStackAsStringArray();
 		jStack.setListData(stackStringArray.length == 0 ? empty : stackStringArray);
 	}

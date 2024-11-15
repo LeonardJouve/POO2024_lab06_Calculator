@@ -73,6 +73,10 @@ public class State {
 		return currentValue == null;
 	}
 
+	public boolean hasInput() {
+		return !pendingCurrentValue.isEmpty();
+	}
+
 	public void clearInput() {
 		pendingCurrentValue = new StringBuilder();
 		hasDecimalPoint = false;
@@ -115,6 +119,10 @@ public class State {
 
 	public boolean stackIsEmpty() {
 		return values.isEmpty();
+	}
+
+	public int stackSize() {
+		return values.size();
 	}
 
 	public String[] getStackAsStringArray() {

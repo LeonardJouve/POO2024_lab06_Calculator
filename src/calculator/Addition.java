@@ -7,14 +7,20 @@ public class Addition extends Operator {
 
 	@Override
 	void execute() {
-		getState().acceptCurrentValue();
-		if (getState().stackIsEmpty()) {
+		if (getState().stackIsEmpty() || (getState().stackSize() < 2 && !getState().hasInput())) {
 			getState().raiseError();
 		}
 
 		if (hasError()) return;
 
-		double a = getState().getCurrentValue();
+		double a;
+		if (getState().hasInput()) {
+			getState().acceptCurrentValue();
+			a = getState().getCurrentValue();
+		} else {
+			a = getState().popValue();
+		}
+
 		double b = getState().popValue();
 
 		getState().setCurrentValue(a + b);
