@@ -15,11 +15,14 @@ public class State {
 
 
 	// User input
-
 	public void addDigit(int digit) {
 		if (currentValue != null) {
 			pushValue(currentValue);
 			currentValue = null;
+		}
+
+		if (pendingCurrentValue.toString().equals("0")) {
+			pendingCurrentValue.deleteCharAt(0);
 		}
 
 		pendingCurrentValue.append(digit);
