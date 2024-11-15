@@ -2,6 +2,8 @@ package calculator;
 
 import util.Stack;
 
+import java.util.Arrays;
+
 public class State {
 	private Stack<Double> values = new Stack<>();
 	private Double currentValue = null;
@@ -87,5 +89,17 @@ public class State {
 
 		values = new Stack<>();
 		// TODO: is it necessary to remove memorized value?
+	}
+
+	public String[] getStackAsStringArray() {
+		String[] result = new String[values.size()];
+
+		int i = 0;
+		for (double value : values) {
+			result[i] = String.valueOf(value);
+			++i;
+		}
+
+		return result;
 	}
 }
