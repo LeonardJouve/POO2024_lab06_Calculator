@@ -10,11 +10,11 @@ public class State {
 	private double memory = 0;
 
 	public double popValue() {
-		return 0;
+		return values.pop();
 	}
 
 	public void pushValue(Double value) {
-
+		values.push(value);
 	}
 
 	public void acceptCurrentValue() {
