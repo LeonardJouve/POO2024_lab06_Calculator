@@ -29,10 +29,13 @@ public class JCalculator extends JFrame
 	// Contraintes pour le placement des composants graphiques
 	private final GridBagConstraints constraints = new GridBagConstraints();
 
+	// Etat de la calculatrice
+	private final State state = new State();
+
 	// Mise a jour de l'interface apres une operation (jList et jStack)
 	private void update()
 	{
-		// Modifier une zone de texte, JTextField.setText(string nom)
+		jNumber.setText(state.getCurrentTextValue());
 		// Modifier un composant liste, JList.setListData(Object[] tableau)
 	}
 
@@ -90,9 +93,9 @@ public class JCalculator extends JFrame
 		// Boutons 1-9
 		for (int i = 1; i < 10; i++)
 			addOperatorButton(String.valueOf(i), (i - 1) % 3, 4 - (i - 1) / 3,
-				Color.BLUE, null);
+				Color.BLUE, new Digit(state, i));
 		// Bouton 0
-		addOperatorButton("0", 0, 5, Color.BLUE, null);
+		addOperatorButton("0", 0, 5, Color.BLUE, new Digit(state, 0));
 
 		// Changement de signe de la valeur courante
 		addOperatorButton("+/-", 1, 5, Color.BLUE, null);

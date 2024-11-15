@@ -22,9 +22,12 @@ public class State {
 		pendingCurrentValue = new StringBuilder();
 	}
 
+	public String getCurrentTextValue() {
+		return pendingCurrentValue.isEmpty() ? "0" : pendingCurrentValue.toString();
+	}
+
 	public void clearCurrentValue() {
 		currentValue = null;
-		pendingCurrentValue = new StringBuilder();
 	}
 
 	public void addDigit(int digit) {
@@ -45,11 +48,18 @@ public class State {
 	}
 
 	public void addDecimalPoint() {
+		if (hasDecimalPoint) return;
+
+		// Implicitly add a zero if the first character is a decimal point
+		if (pendingCurrentValue.isEmpty()) {
+			pendingCurrentValue.append('0');
+		}
+
 		hasDecimalPoint = true;
-		pendingCurrentValue.append(".");
+		pendingCurrentValue.append('.');
 	}
 
-	public double getCurrentValue() {
+	public Double getCurrentValue() {
 		return currentValue;
 	}
 
@@ -67,7 +77,7 @@ public class State {
 
 	public void clearError() {
 		// TODO: add error handling
-		currentValue = null;
+		clearCurrentValue();
 		pendingCurrentValue = new StringBuilder();
 		hasDecimalPoint = false;
 	}
