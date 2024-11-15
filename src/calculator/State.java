@@ -7,7 +7,7 @@ public class State {
 
 	private Double currentValue = null;
 
-	private StringBuilder pendingCurrentValue = new StringBuilder("0");
+	private StringBuilder pendingCurrentValue = new StringBuilder();
 	boolean hasDecimalPoint = false;
 
 	private Double memory = null;
