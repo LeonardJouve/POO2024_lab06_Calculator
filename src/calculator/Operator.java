@@ -1,6 +1,4 @@
-package calculator.operators;
-
-import calculator.State;
+package calculator;
 
 abstract class Operator {
 	private final State state;

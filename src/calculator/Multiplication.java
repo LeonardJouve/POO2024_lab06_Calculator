@@ -1,6 +1,4 @@
-package calculator.operators;
-
-import calculator.State;
+package calculator;
 
 public class Multiplication extends Operator {
 	public Multiplication(State state) {
