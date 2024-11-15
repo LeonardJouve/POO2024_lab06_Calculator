@@ -4,7 +4,7 @@ import util.Stack;
 
 public class State {
 	private Stack<Double> values = new Stack<>();
-	private double currentValue;
+	private Double currentValue = null;
 	private StringBuilder pendingCurrentValue = new StringBuilder();
 	boolean hasDecimalPoint = false;
 	private double memory = 0;
@@ -23,11 +23,16 @@ public class State {
 	}
 
 	public void clearCurrentValue() {
-		currentValue = 0;
+		currentValue = null;
 		pendingCurrentValue = new StringBuilder();
 	}
 
 	public void addDigit(int digit) {
+		if (currentValue != null) {
+			pushValue(currentValue);
+			currentValue = null;
+		}
+
 		pendingCurrentValue.append(digit);
 	}
 
@@ -62,7 +67,7 @@ public class State {
 
 	public void clearError() {
 		// TODO: add error handling
-		currentValue = 0;
+		currentValue = null;
 		pendingCurrentValue = new StringBuilder();
 		hasDecimalPoint = false;
 	}
