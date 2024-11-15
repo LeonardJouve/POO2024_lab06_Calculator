@@ -8,6 +8,9 @@ public class AddToStack extends Operator {
 
 	@Override
 	void execute() {
-		getState().acceptCurrentValue();
+		double value = Double.parseDouble(getState().getCurrentTextValue());
+		getState().clearInput();
+
+		getState().pushValue(value);
 	}
 }

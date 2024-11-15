@@ -77,10 +77,14 @@ public class State {
 		return memory;
 	}
 
+	public void clearInput() {
+		pendingCurrentValue = new StringBuilder("0");
+	}
+
 	public void clearError() {
 		// TODO: add error handling
 		clearCurrentValue();
-		pendingCurrentValue = new StringBuilder();
+		clearInput();
 		hasDecimalPoint = false;
 	}
 
