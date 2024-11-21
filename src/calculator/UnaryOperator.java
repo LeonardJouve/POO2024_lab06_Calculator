@@ -23,6 +23,6 @@ public abstract class UnaryOperator extends Operator {
             operand = getState().popValue();
         }
 
-        getState().pushValue(operate(operand));
+        getState().setCurrentValue(operate(operand));
     }
 }
