@@ -115,21 +115,21 @@ public class JCalculator extends JFrame
 		addOperatorButton("0", 0, 5, Color.BLUE, new Digit(state, 0));
 
 		// Changement de signe de la valeur courante
-		addOperatorButton("+/-", 1, 5, Color.BLUE, null);
+		addOperatorButton("+/-", 1, 5, Color.BLUE, new InvertSign(state));
 
 		// Operateur point (chiffres apres la virgule ensuite)
 		addOperatorButton(".", 2, 5, Color.BLUE, new DecimalPoint(state));
 
 		// Operateurs arithmetiques a deux operandes: /, *, -, +
-		addOperatorButton("/", 3, 2, Color.RED, null);
-		addOperatorButton("*", 3, 3, Color.RED, null);
-		addOperatorButton("-", 3, 4, Color.RED, null);
+		addOperatorButton("/", 3, 2, Color.RED, new Division(state));
+		addOperatorButton("*", 3, 3, Color.RED, new Multiplication(state));
+		addOperatorButton("-", 3, 4, Color.RED, new Subtraction(state));
 		addOperatorButton("+", 3, 5, Color.RED, new Addition(state));
 
 		// Operateurs arithmetiques a un operande: 1/x, x^2, Sqrt
-		addOperatorButton("1/x", 4, 2, Color.RED, null);
-		addOperatorButton("x^2", 4, 3, Color.RED, null);
-		addOperatorButton("Sqrt", 4, 4, Color.RED, null);
+		addOperatorButton("1/x", 4, 2, Color.RED, new Invert(state));
+		addOperatorButton("x^2", 4, 3, Color.RED, new Pow(state, 2));
+		addOperatorButton("Sqrt", 4, 4, Color.RED, new Sqrt(state));
 
 		// Entree: met la valeur courante sur le sommet de la pile
 		addOperatorButton("Ent", 4, 5, Color.RED, new AddToStack(state));
