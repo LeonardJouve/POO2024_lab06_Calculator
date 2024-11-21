@@ -5,7 +5,7 @@ import util.Stack;
 public class State {
 	private Stack<Double> values = new Stack<>();
 
-	private StringBuilder pendingCurrentValue = new StringBuilder();
+	private StringBuilder pendingCurrentValue = new StringBuilder("0");
 	private boolean hasDecimalPoint = false;
 	private boolean isCalculatedValue = false;
 	private boolean isDefaultValue = true;
@@ -29,8 +29,6 @@ public class State {
 	}
 
 	public void popDigit() {
-		if (pendingCurrentValue.isEmpty()) return;
-
 		if (pendingCurrentValue.charAt(pendingCurrentValue.length() - 1) == '.') {
 			hasDecimalPoint = false;
 		}
