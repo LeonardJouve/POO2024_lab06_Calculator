@@ -29,7 +29,9 @@ public class State {
 		pendingCurrentValue.append(digit);
 	}
 
-	public void removeDigit() {
+	public void popDigit() {
+		if (pendingCurrentValue.isEmpty()) return;
+
 		if (pendingCurrentValue.charAt(pendingCurrentValue.length() - 1) == '.') {
 			hasDecimalPoint = false;
 		}
