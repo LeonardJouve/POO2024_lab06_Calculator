@@ -5,8 +5,6 @@ import util.Stack;
 public class State {
 	private Stack<Double> values = new Stack<>();
 
-	private Double currentValue = null;
-
 	private StringBuilder pendingCurrentValue = new StringBuilder();
 	boolean hasDecimalPoint = false;
 
@@ -17,9 +15,8 @@ public class State {
 
 	// User input
 	public void addDigit(int digit) {
-		if (currentValue != null) {
-			pushValue(currentValue);
-			currentValue = null;
+		if (hasInput()) {
+			pushValue(getCurrentValue());
 		}
 
 		if (pendingCurrentValue.toString().equals("0")) {
@@ -68,15 +65,11 @@ public class State {
 	}
 
 	public void clearCurrentValue() {
-		currentValue = null;
-	}
-
-	public boolean currentValueIsEmpty() {
-		return currentValue == null;
+		pendingCurrentValue = new StringBuilder("0");
 	}
 
 	public boolean hasInput() {
-		return !pendingCurrentValue.isEmpty();
+		return !pendingCurrentValue.toString().equals("0");
 	}
 
 	public void clearInput() {
@@ -84,12 +77,11 @@ public class State {
 		hasDecimalPoint = false;
 	}
 
-	public Double getCurrentValue() {
-		return currentValue;
+	public double getCurrentValue() {
+		return Double.parseDouble(pendingCurrentValue.toString());
 	}
 
 	public void setCurrentValue(double currentValue) {
-		this.currentValue = currentValue;
 		pendingCurrentValue = new StringBuilder(String.valueOf(currentValue));
 	}
 
