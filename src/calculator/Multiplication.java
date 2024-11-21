@@ -1,13 +1,12 @@
 package calculator;
 
-public class Multiplication extends Operator {
+public class Multiplication extends BinaryOperator {
 	public Multiplication(State state) {
 		super(state);
 	}
 
 	@Override
-	void execute() {
-		if (hasError()) return;
-
+	public double operate(double leftOperand, double rightOperand) {
+		return leftOperand * rightOperand;
 	}
 }
