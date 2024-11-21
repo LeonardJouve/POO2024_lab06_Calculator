@@ -36,6 +36,10 @@ public class State {
 		}
 
 		pendingCurrentValue.deleteCharAt(pendingCurrentValue.length() - 1);
+
+		if (pendingCurrentValue.isEmpty()) {
+			pendingCurrentValue.append("0");
+		}
 	}
 
 	public void addDecimalPoint() {
