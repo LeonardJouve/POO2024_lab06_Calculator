@@ -9,18 +9,17 @@ public abstract class BinaryOperator extends Operator {
 
     @Override
     void execute() {
-        if (getState().stackIsEmpty() || (getState().stackSize() < 2 && !getState().hasInput())) {
+        if (getState().stackIsEmpty() || (getState().hasDefaultValue() && getState().stackSize() < 2)) {
             getState().raiseError();
         }
 
         if (hasError()) return;
 
         double leftOperand;
-        if (getState().hasInput()) {
-            getState().acceptCurrentValue();
-            leftOperand = getState().getCurrentValue();
-        } else {
+        if (getState().hasDefaultValue()) {
             leftOperand = getState().popValue();
+        } else {
+            leftOperand = getState().getCurrentValue();
         }
 
         double rightOperand = getState().popValue();

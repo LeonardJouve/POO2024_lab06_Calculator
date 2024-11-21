@@ -12,7 +12,6 @@ public class Clear extends Operator {
 
 	@Override
 	void execute() {
-		getState().clearInput();
 		getState().clearCurrentValue();
 		getState().clearError();
 

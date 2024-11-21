@@ -10,10 +10,7 @@ public class AddToStack extends Operator {
 	void execute() {
 		if (hasError()) return;
 
-		getState().acceptCurrentValue();
-
 		getState().pushValue(getState().getCurrentValue());
-		getState().clearInput();
 		getState().clearCurrentValue();
 	}
 }

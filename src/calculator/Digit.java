@@ -12,11 +12,9 @@ public class Digit extends Operator {
 	void execute() {
 		if (hasError()) return;
 
-		Double currentValue = getState().getCurrentValue();
-		if (currentValue != null) {
-			getState().pushValue(currentValue);
+		if (getState().hasCalculatedValue()) {
+			getState().pushValue(getState().getCurrentValue());
 			getState().clearCurrentValue();
-			getState().clearInput();
 		}
 
 		getState().addDigit(digit);

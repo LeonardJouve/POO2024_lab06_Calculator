@@ -6,17 +6,18 @@ public class State {
 	private Stack<Double> values = new Stack<>();
 
 	private StringBuilder pendingCurrentValue = new StringBuilder();
-	boolean hasDecimalPoint = false;
+	private boolean hasDecimalPoint = false;
+	private boolean isCalculatedValue = false;
+	private boolean isDefaultValue = true;
 
 	private Double memory = null;
 	private boolean error = false;
 
-
-
 	// User input
 	public void addDigit(int digit) {
-		if (hasInput()) {
+		if (hasCalculatedValue()) {
 			pushValue(getCurrentValue());
+			isCalculatedValue = false;
 		}
 
 		if (pendingCurrentValue.toString().equals("0")) {
@@ -24,6 +25,7 @@ public class State {
 		}
 
 		pendingCurrentValue.append(digit);
+		isDefaultValue = false;
 	}
 
 	public void popDigit() {
@@ -52,29 +54,19 @@ public class State {
 		return pendingCurrentValue.isEmpty() ? "0" : pendingCurrentValue.toString();
 	}
 
-	public void acceptCurrentValue() {
-		try {
-			double value = Double.parseDouble(pendingCurrentValue.toString());
-
-			setCurrentValue(value);
-		} catch (NumberFormatException e) {
-			raiseError();
-		}
-
-		clearInput();
-	}
-
 	public void clearCurrentValue() {
 		pendingCurrentValue = new StringBuilder("0");
-	}
-
-	public boolean hasInput() {
-		return !pendingCurrentValue.toString().equals("0");
-	}
-
-	public void clearInput() {
-		pendingCurrentValue = new StringBuilder();
 		hasDecimalPoint = false;
+		isCalculatedValue = false;
+		isDefaultValue = true;
+	}
+
+	public boolean hasCalculatedValue() {
+		return isCalculatedValue;
+	}
+
+	public boolean hasDefaultValue() {
+		return isDefaultValue;
 	}
 
 	public double getCurrentValue() {
