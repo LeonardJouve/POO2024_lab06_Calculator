@@ -77,6 +77,7 @@ public class State {
 
 	public void setCurrentValue(double currentValue) {
 		pendingCurrentValue = new StringBuilder(String.valueOf(currentValue));
+		isDefaultValue = false;
 	}
 
 	// Stack
