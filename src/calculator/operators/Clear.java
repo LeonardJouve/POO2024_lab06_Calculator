@@ -1,4 +1,6 @@
-package calculator;
+package calculator.operators;
+
+import calculator.State;
 
 public class Clear extends Operator {
 
@@ -11,7 +13,7 @@ public class Clear extends Operator {
 	}
 
 	@Override
-	void execute() {
+	public void execute() {
 		getState().clearCurrentValue();
 		getState().clearError();
 

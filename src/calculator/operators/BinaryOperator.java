@@ -1,14 +1,16 @@
-package calculator;
+package calculator.operators;
+
+import calculator.State;
 
 public abstract class BinaryOperator extends Operator {
     public BinaryOperator(State state) {
         super(state);
     }
 
-    public abstract double operate(double leftOperand, double rightOperand);
+    protected abstract double operate(double leftOperand, double rightOperand);
 
     @Override
-    void execute() {
+    public void execute() {
         if (getState().stackIsEmpty() || (getState().hasDefaultValue() && getState().stackSize() < 2)) {
             getState().raiseError();
         }

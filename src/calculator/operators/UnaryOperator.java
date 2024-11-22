@@ -1,11 +1,13 @@
-package calculator;
+package calculator.operators;
+
+import calculator.State;
 
 public abstract class UnaryOperator extends Operator {
     public UnaryOperator(State state) {
         super(state);
     }
 
-    public abstract double operate(double operand);
+    protected abstract double operate(double operand);
 
     @Override
     public void execute() {
@@ -22,6 +24,6 @@ public abstract class UnaryOperator extends Operator {
             operand = getState().popValue();
         }
 
-        getState().pushValue(operate(operand));
+        getState().setCurrentValue(operate(operand));
     }
 }

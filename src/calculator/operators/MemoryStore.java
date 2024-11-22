@@ -1,4 +1,6 @@
-package calculator;
+package calculator.operators;
+
+import calculator.State;
 
 public class MemoryStore extends Operator {
     public MemoryStore(State state) {
@@ -6,7 +8,7 @@ public class MemoryStore extends Operator {
     }
 
     @Override
-    void execute() {
+    public void execute() {
         if (getState().hasDefaultValue() && getState().stackIsEmpty())
             getState().raiseError();
 
