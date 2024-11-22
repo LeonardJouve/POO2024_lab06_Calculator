@@ -1,4 +1,6 @@
-package calculator;
+package calculator.operators;
+
+import calculator.State;
 
 public class Addition extends BinaryOperator {
 	public Addition(State state) {
@@ -6,7 +8,7 @@ public class Addition extends BinaryOperator {
 	}
 
 	@Override
-	public double operate(double leftOperand, double rightOperand) {
+	protected double operate(double leftOperand, double rightOperand) {
 		return leftOperand + rightOperand;
 	}
 }

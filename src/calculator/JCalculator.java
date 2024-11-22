@@ -1,5 +1,7 @@
 package calculator;
 
+import calculator.operators.*;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -110,7 +112,7 @@ public class JCalculator extends JFrame
 
 		// Operateurs arithmetiques a deux operandes: /, *, -, +
 		addOperatorButton("/", 3, 2, Color.RED, null);
-		addOperatorButton("*", 3, 3, Color.RED, null);
+		addOperatorButton("*", 3, 3, Color.RED, new Multiplication(state));
 		addOperatorButton("-", 3, 4, Color.RED, null);
 		addOperatorButton("+", 3, 5, Color.RED, new Addition(state));
 

@@ -1,4 +1,6 @@
-package calculator;
+package calculator.operators;
+
+import calculator.State;
 
 public class MemoryRecall extends Operator {
     public MemoryRecall(State state) {
@@ -6,7 +8,7 @@ public class MemoryRecall extends Operator {
     }
 
     @Override
-    void execute() {
+    public void execute() {
         Double value = getState().getMemory();
 
         if (getState().hasError()) return;

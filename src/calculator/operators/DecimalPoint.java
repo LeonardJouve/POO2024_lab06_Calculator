@@ -1,4 +1,6 @@
-package calculator;
+package calculator.operators;
+
+import calculator.State;
 
 public class DecimalPoint extends Operator {
 
@@ -7,7 +9,7 @@ public class DecimalPoint extends Operator {
 	}
 
 	@Override
-	void execute() {
+	public void execute() {
 		if (hasError()) return;
 
 		getState().addDecimalPoint();

@@ -1,4 +1,6 @@
-package calculator;
+package calculator.operators;
+
+import calculator.State;
 
 public class Digit extends Operator {
 	int digit;
@@ -9,7 +11,7 @@ public class Digit extends Operator {
 	}
 
 	@Override
-	void execute() {
+	public void execute() {
 		if (hasError()) return;
 
 		if (getState().hasCalculatedValue()) {
