@@ -5,6 +5,12 @@ import calculator.State;
 public class Digit extends Operator {
 	int digit;
 
+	/**
+	 * Append digit
+	 *
+	 * @param state the calculator state
+	 * @param digit the digit
+	 */
 	public Digit(State state, int digit) {
 		super(state);
 		this.digit = digit;

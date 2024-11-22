@@ -81,7 +81,7 @@ public class State {
 		isCalculatedValue = true;
 	}
 
-	// Stack
+	// Memory
 	public void setMemory(double value) {
 		this.memory = value;
 	}

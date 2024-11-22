@@ -5,10 +5,18 @@ import calculator.State;
 public abstract class Operator {
 	private final State state;
 
+	/**
+	 * Abstract operator
+	 *
+	 * @param state the calculator state
+	 */
 	public Operator(State state) {
 		this.state = state;
 	}
 
+	/**
+	 * Execute the operator
+	 */
 	public abstract void execute();
 
 	protected State getState() {

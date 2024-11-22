@@ -3,6 +3,11 @@ package calculator.operators;
 import calculator.State;
 
 public class Division extends BinaryOperator {
+	/**
+	 * Division operator
+	 *
+	 * @param state the calculator state
+	 */
 	public Division(State state) {
 		super(state);
 	}
