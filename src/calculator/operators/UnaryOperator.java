@@ -19,9 +19,9 @@ public abstract class UnaryOperator extends Operator {
 
         double operand;
         if (getState().hasDefaultValue()) {
-            operand = getState().getCurrentValue();
-        } else {
             operand = getState().popValue();
+        } else {
+            operand = getState().getCurrentValue();
         }
 
         getState().setCurrentValue(operate(operand));
