@@ -3,6 +3,11 @@ package calculator.operators;
 import calculator.State;
 
 public class Addition extends BinaryOperator {
+	/**
+	 * Addition operator
+	 *
+	 * @param state the calculator state
+	 */
 	public Addition(State state) {
 		super(state);
 	}

@@ -3,6 +3,11 @@ package calculator.operators;
 import calculator.State;
 
 public class Sqrt extends UnaryOperator {
+	/**
+	 * Square root operator
+	 *
+	 * @param state the calculator state
+	 */
 	public Sqrt(State state) {
 		super(state);
 	}

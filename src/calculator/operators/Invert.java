@@ -3,6 +3,11 @@ package calculator.operators;
 import calculator.State;
 
 public class Invert extends UnaryOperator {
+	/**
+	 * Invert operator
+	 *
+	 * @param state the calculator state
+	 */
 	public Invert(State state) {
 		super(state);
 	}

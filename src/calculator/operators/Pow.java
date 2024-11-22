@@ -3,9 +3,14 @@ package calculator.operators;
 import calculator.State;
 
 public class Pow extends UnaryOperator {
+	private final int power;
 
-	int power;
-
+	/**
+	 * Pow operator
+	 *
+	 * @param state the calculator state
+	 * @param power the power
+	 */
 	public Pow(State state, int power) {
 		super(state);
 
