@@ -15,6 +15,7 @@ public class Clear extends Operator {
 	@Override
 	public void execute() {
 		getState().clearCurrentValue();
+		getState().clearMemory();
 		getState().clearError();
 
 		if (!keepStack) {
