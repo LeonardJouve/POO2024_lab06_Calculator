@@ -17,15 +17,15 @@ public abstract class BinaryOperator extends Operator {
 
         if (hasError()) return;
 
-        double leftOperand;
+        double right;
         if (getState().hasDefaultValue()) {
-            leftOperand = getState().popValue();
+            right = getState().popValue();
         } else {
-            leftOperand = getState().getCurrentValue();
+            right = getState().getCurrentValue();
         }
 
-        double rightOperand = getState().popValue();
+        double left = getState().popValue();
 
-        getState().setCurrentValue(operate(leftOperand, rightOperand));
+        getState().setCurrentValue(operate(left, right));
     }
 }
