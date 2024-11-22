@@ -81,10 +81,10 @@ public class JCalculator extends JFrame
 		constraints.gridwidth = 1; // reset width
 
 		// Rappel de la valeur en memoire
-		addOperatorButton("MR", 0, 1, Color.RED, null);
+		addOperatorButton("MR", 0, 1, Color.RED, new MemoryRecall(state));
 
 		// Stockage d'une valeur en memoire
-		addOperatorButton("MS", 1, 1, Color.RED, null);
+		addOperatorButton("MS", 1, 1, Color.RED, new MemoryStore(state));
 
 		// Backspace
 		addOperatorButton("<=", 2, 1, Color.RED, new Backspace(state));
