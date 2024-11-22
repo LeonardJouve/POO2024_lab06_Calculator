@@ -1,4 +1,6 @@
-package calculator;
+package calculator.operators;
+
+import calculator.State;
 
 public class Digit extends Operator {
 	int digit;
@@ -9,14 +11,12 @@ public class Digit extends Operator {
 	}
 
 	@Override
-	void execute() {
+	public void execute() {
 		if (hasError()) return;
 
-		Double currentValue = getState().getCurrentValue();
-		if (currentValue != null) {
-			getState().pushValue(currentValue);
+		if (getState().hasCalculatedValue()) {
+			getState().pushValue(getState().getCurrentValue());
 			getState().clearCurrentValue();
-			getState().clearInput();
 		}
 
 		getState().addDigit(digit);

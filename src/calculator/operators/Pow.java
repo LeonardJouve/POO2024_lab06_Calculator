@@ -1,4 +1,6 @@
-package calculator;
+package calculator.operators;
+
+import calculator.State;
 
 public class Pow extends UnaryOperator {
 
@@ -11,7 +13,7 @@ public class Pow extends UnaryOperator {
 	}
 
 	@Override
-	public double operate(double operand) {
+	protected double operate(double operand) {
 		return Math.pow(operand, power);
 	}
 }

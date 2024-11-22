@@ -1,23 +1,24 @@
-package calculator;
+package calculator.operators;
+
+import calculator.State;
 
 public abstract class UnaryOperator extends Operator {
     public UnaryOperator(State state) {
         super(state);
     }
 
-    public abstract double operate(double operand);
+    protected abstract double operate(double operand);
 
     @Override
     public void execute() {
-        if (!getState().hasInput() && getState().stackIsEmpty()) {
+        if (getState().hasDefaultValue() && getState().stackIsEmpty()) {
             getState().raiseError();
         }
 
         if (hasError()) return;
 
         double operand;
-        if (getState().hasInput()) {
-            getState().acceptCurrentValue();
+        if (getState().hasDefaultValue()) {
             operand = getState().getCurrentValue();
         } else {
             operand = getState().popValue();

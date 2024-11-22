@@ -1,5 +1,7 @@
 package calculator;
 
+import calculator.operators.*;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -23,9 +25,6 @@ public class JCalculator extends JFrame
 	// Texte d'erreur
 	private static final String error = "ERREUR";
 
-	// Zéro
-	private static final String zero = "0";
-
 	// Zone de texte contenant la valeur introduite ou resultat courant
 	private final JTextField jNumber = new JTextField("0");
 
@@ -44,10 +43,8 @@ public class JCalculator extends JFrame
 		String text;
 		if (state.hasError()) {
 			text = error;
-		} else if (state.hasInput()) {
-			text = state.getCurrentTextValue();
 		} else {
-			text = zero;
+			text = state.getCurrentTextValue();
 		}
 
 		jNumber.setText(text);
@@ -93,10 +90,10 @@ public class JCalculator extends JFrame
 		constraints.gridwidth = 1; // reset width
 
 		// Rappel de la valeur en memoire
-		addOperatorButton("MR", 0, 1, Color.RED, null);
+		addOperatorButton("MR", 0, 1, Color.RED, new MemoryRecall(state));
 
 		// Stockage d'une valeur en memoire
-		addOperatorButton("MS", 1, 1, Color.RED, null);
+		addOperatorButton("MS", 1, 1, Color.RED, new MemoryStore(state));
 
 		// Backspace
 		addOperatorButton("<=", 2, 1, Color.RED, new Backspace(state));

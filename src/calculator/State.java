@@ -5,21 +5,19 @@ import util.Stack;
 public class State {
 	private Stack<Double> values = new Stack<>();
 
-	private Double currentValue = null;
-
-	private StringBuilder pendingCurrentValue = new StringBuilder();
-	boolean hasDecimalPoint = false;
+	private StringBuilder pendingCurrentValue = new StringBuilder("0");
+	private boolean hasDecimalPoint = false;
+	private boolean isCalculatedValue = false;
+	private boolean isDefaultValue = true;
 
 	private Double memory = null;
 	private boolean error = false;
 
-
-
 	// User input
 	public void addDigit(int digit) {
-		if (currentValue != null) {
-			pushValue(currentValue);
-			currentValue = null;
+		if (hasCalculatedValue()) {
+			pushValue(getCurrentValue());
+			isCalculatedValue = false;
 		}
 
 		if (pendingCurrentValue.toString().equals("0")) {
@@ -27,16 +25,19 @@ public class State {
 		}
 
 		pendingCurrentValue.append(digit);
+		isDefaultValue = false;
 	}
 
 	public void popDigit() {
-		if (pendingCurrentValue.isEmpty()) return;
-
 		if (pendingCurrentValue.charAt(pendingCurrentValue.length() - 1) == '.') {
 			hasDecimalPoint = false;
 		}
 
 		pendingCurrentValue.deleteCharAt(pendingCurrentValue.length() - 1);
+
+		if (pendingCurrentValue.isEmpty()) {
+			pendingCurrentValue.append("0");
+		}
 	}
 
 	public void addDecimalPoint() {
@@ -55,42 +56,29 @@ public class State {
 		return pendingCurrentValue.isEmpty() ? "0" : pendingCurrentValue.toString();
 	}
 
-	public void acceptCurrentValue() {
-		try {
-			double value = Double.parseDouble(pendingCurrentValue.toString());
-
-			setCurrentValue(value);
-		} catch (NumberFormatException e) {
-			raiseError();
-		}
-
-		clearInput();
-	}
-
 	public void clearCurrentValue() {
-		currentValue = null;
-	}
-
-	public boolean currentValueIsEmpty() {
-		return currentValue == null;
-	}
-
-	public boolean hasInput() {
-		return !pendingCurrentValue.isEmpty();
-	}
-
-	public void clearInput() {
-		pendingCurrentValue = new StringBuilder();
+		pendingCurrentValue = new StringBuilder("0");
 		hasDecimalPoint = false;
+		isCalculatedValue = false;
+		isDefaultValue = true;
 	}
 
-	public Double getCurrentValue() {
-		return currentValue;
+	public boolean hasCalculatedValue() {
+		return isCalculatedValue;
+	}
+
+	public boolean hasDefaultValue() {
+		return isDefaultValue;
+	}
+
+	public double getCurrentValue() {
+		return Double.parseDouble(pendingCurrentValue.toString());
 	}
 
 	public void setCurrentValue(double currentValue) {
-		this.currentValue = currentValue;
 		pendingCurrentValue = new StringBuilder(String.valueOf(currentValue));
+		isDefaultValue = false;
+		isCalculatedValue = true;
 	}
 
 	// Stack

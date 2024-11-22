@@ -1,13 +1,15 @@
-package calculator;
+package calculator.operators;
 
-abstract class Operator {
+import calculator.State;
+
+public abstract class Operator {
 	private final State state;
 
 	public Operator(State state) {
 		this.state = state;
 	}
 
-	abstract void execute();
+	public abstract void execute();
 
 	protected State getState() {
 		return state;

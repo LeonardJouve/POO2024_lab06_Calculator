@@ -1,4 +1,6 @@
-package calculator;
+package calculator.operators;
+
+import calculator.State;
 
 public class InvertSign extends UnaryOperator {
 	public InvertSign(State state) {
@@ -6,7 +8,7 @@ public class InvertSign extends UnaryOperator {
 	}
 
 	@Override
-	public double operate(double operand) {
+	protected double operate(double operand) {
 		return -1 * operand;
 	}
 }
