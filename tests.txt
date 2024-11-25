@@ -1,0 +1,38 @@
+1 Ent 2 Ent +
+-> 3
+
+1 Ent 2 +
+-> 3
+
+1 Ent 4 Ent 2 / +
+-> 3
+
+1 Ent 2 -
+-> -1
+
+3.5 Ent 2 *
+-> 7
+
+0.1 1/x
+-> 10
+
+9 Ent 0 / CE
+-> 0 (erreur lorsque / est pressé, réinitialisée par CE)
+
+987 <=
+-> 98
+
+2 MS 3 Ent MR +
+-> 5
+
+121 Sqrt
+-> 11
+
+1 +/- Ent 2 * x^2
+-> 4
+
+587 Sqrt x^2
+-> 587
+
+1 Ent 3 - +/-
+-> 2
