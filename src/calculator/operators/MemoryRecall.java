@@ -14,10 +14,10 @@ public class MemoryRecall extends Operator {
 
     @Override
     public void execute() {
-        Double value = getState().getMemory();
-
         if (getState().hasError()) return;
 
-        getState().setCurrentValue(value == null ? 0 : value);
+        double value = getState().getMemory();
+
+        getState().setCurrentValue(value);
     }
 }

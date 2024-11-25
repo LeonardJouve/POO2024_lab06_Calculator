@@ -8,7 +8,6 @@ public class State {
 	private StringBuilder pendingCurrentValue = new StringBuilder("0");
 	private boolean hasDecimalPoint = false;
 	private boolean isCalculatedValue = false;
-	private boolean isDefaultValue = true;
 
 	private Double memory = null;
 	private boolean error = false;
@@ -25,7 +24,6 @@ public class State {
 		}
 
 		pendingCurrentValue.append(digit);
-		isDefaultValue = false;
 	}
 
 	public void popDigit() {
@@ -60,15 +58,10 @@ public class State {
 		pendingCurrentValue = new StringBuilder("0");
 		hasDecimalPoint = false;
 		isCalculatedValue = false;
-		isDefaultValue = true;
 	}
 
 	public boolean hasCalculatedValue() {
 		return isCalculatedValue;
-	}
-
-	public boolean hasDefaultValue() {
-		return isDefaultValue;
 	}
 
 	public double getCurrentValue() {
@@ -77,7 +70,6 @@ public class State {
 
 	public void setCurrentValue(double currentValue) {
 		pendingCurrentValue = new StringBuilder(String.valueOf(currentValue));
-		isDefaultValue = false;
 		isCalculatedValue = true;
 	}
 
@@ -109,10 +101,6 @@ public class State {
 
 	public boolean stackIsEmpty() {
 		return values.isEmpty();
-	}
-
-	public int stackSize() {
-		return values.size();
 	}
 
 	public String[] getStackAsStringArray() {

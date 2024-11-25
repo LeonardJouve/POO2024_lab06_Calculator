@@ -23,20 +23,14 @@ public abstract class BinaryOperator extends Operator {
 
     @Override
     public void execute() {
-        if (getState().stackIsEmpty() || (getState().hasDefaultValue() && getState().stackSize() < 2)) {
+        if (getState().stackIsEmpty()) {
             getState().raiseError();
         }
 
         if (hasError()) return;
 
-        double right;
-        if (getState().hasDefaultValue()) {
-            right = getState().popValue();
-        } else {
-            right = getState().getCurrentValue();
-        }
-
         double left = getState().popValue();
+        double right = getState().getCurrentValue();
 
         getState().setCurrentValue(operate(left, right));
     }
