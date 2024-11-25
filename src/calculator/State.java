@@ -63,8 +63,8 @@ public class State {
 		return Double.parseDouble(pendingCurrentValue.toString());
 	}
 
-	public void setCurrentValue(double currentValue) {
-		pendingCurrentValue = new StringBuilder(String.valueOf(currentValue));
+	public void setCurrentValue(double newValue) {
+		pendingCurrentValue = new StringBuilder(String.valueOf(newValue));
 		hasCalculatedValue = true;
 	}
 
@@ -73,7 +73,7 @@ public class State {
 		this.memory = value;
 	}
 
-	public Double getMemory() {
+	public double getMemory() {
 		return memory;
 	}
 
