@@ -7,16 +7,16 @@ public class State {
 
 	private StringBuilder pendingCurrentValue = new StringBuilder("0");
 	private boolean hasDecimalPoint = false;
-	private boolean isCalculatedValue = false;
+	private boolean hasCalculatedValue = false;
 
-	private Double memory = null;
+	private double memory = 0;
 	private boolean error = false;
 
 	// User input
 	public void addDigit(int digit) {
 		if (hasCalculatedValue()) {
 			pushValue(getCurrentValue());
-			isCalculatedValue = false;
+			hasCalculatedValue = false;
 		}
 
 		if (pendingCurrentValue.toString().equals("0")) {
@@ -41,27 +41,22 @@ public class State {
 	public void addDecimalPoint() {
 		if (hasDecimalPoint) return;
 
-		// Implicitly add a zero if the first character is a decimal point
-		if (pendingCurrentValue.isEmpty()) {
-			pendingCurrentValue.append('0');
-		}
-
 		hasDecimalPoint = true;
 		pendingCurrentValue.append('.');
 	}
 
 	public String getCurrentTextValue() {
-		return pendingCurrentValue.isEmpty() ? "0" : pendingCurrentValue.toString();
+		return pendingCurrentValue.toString();
 	}
 
 	public void clearCurrentValue() {
 		pendingCurrentValue = new StringBuilder("0");
 		hasDecimalPoint = false;
-		isCalculatedValue = false;
+		hasCalculatedValue = false;
 	}
 
 	public boolean hasCalculatedValue() {
-		return isCalculatedValue;
+		return hasCalculatedValue;
 	}
 
 	public double getCurrentValue() {
@@ -70,7 +65,7 @@ public class State {
 
 	public void setCurrentValue(double currentValue) {
 		pendingCurrentValue = new StringBuilder(String.valueOf(currentValue));
-		isCalculatedValue = true;
+		hasCalculatedValue = true;
 	}
 
 	// Memory
@@ -83,7 +78,7 @@ public class State {
 	}
 
 	public void clearMemory() {
-		this.memory = null;
+		this.memory = 0;
 	}
 
 	// Stack
