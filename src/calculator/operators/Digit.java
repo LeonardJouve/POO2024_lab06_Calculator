@@ -21,7 +21,9 @@ public class Digit extends Operator {
 		if (hasError()) return;
 
 		if (getState().hasCalculatedValue()) {
-			getState().pushValue(getState().getCurrentValue());
+			double value = getState().getCurrentValue();
+
+			getState().pushValue(value);
 			getState().clearCurrentValue();
 		}
 
