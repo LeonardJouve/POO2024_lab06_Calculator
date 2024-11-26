@@ -6,6 +6,7 @@ import java.util.*;
 public class Calculator {
 
 	public static final String EXIT_CODE = "exit";
+	public static final String ERROR_CODE = "error";
 	public static final List<String> DISPLAY_BLOCKING_OPS = List.of("CE", "C");
 
 	public static void main(String[] args) {
@@ -18,14 +19,26 @@ public class Calculator {
 			try {
 				double value = Double.parseDouble(input);
 
-				state.pushCurrentValue();
+				if (state.hasCalculatedValue()) {
+					state.pushCurrentValue();
+					state.clearCurrentValue();
+				}
 
-				state.setCurrentValue(value);
+				state.setCalculatedValue(value);
 			} catch (NumberFormatException e) {
-				operators.get(input).execute();
+				Operator operator = operators.get(input);
+				if (operator == null) {
+					state.raiseError();
+				} else {
+					operator.execute();
+				}
 			}
 
-			if (state.hasError()) continue;
+			if (state.hasError()) {
+				System.out.println(ERROR_CODE);
+				state.clearCurrentValue();
+				continue;
+			}
 
 			if (!DISPLAY_BLOCKING_OPS.contains(input)) {
 				System.out.print(state.getCurrentValue() + " ");
