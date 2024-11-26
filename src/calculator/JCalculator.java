@@ -44,8 +44,7 @@ public class JCalculator extends JFrame
 		if (state.hasError()) {
 			text = error;
 		} else {
-			text = state.getCurrentTextValue();
-			if (text.isEmpty()) text = "0";
+			text = String.valueOf(state.getCurrentValue());
 		}
 
 		jNumber.setText(text);

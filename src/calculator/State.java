@@ -39,10 +39,6 @@ public class State {
 		pendingCurrentValue.append(pendingCurrentValue.isEmpty() ? "0." : ".");
 	}
 
-	public String getCurrentTextValue() {
-		return pendingCurrentValue.toString();
-	}
-
 	public void clearCurrentValue() {
 		pendingCurrentValue = new StringBuilder();
 		hasDecimalPoint = false;
@@ -90,8 +86,6 @@ public class State {
 	}
 
 	public void pushCurrentValue() {
-		if (pendingCurrentValue.isEmpty()) return;
-
 		values.push(getCurrentValue());
 	}
 
