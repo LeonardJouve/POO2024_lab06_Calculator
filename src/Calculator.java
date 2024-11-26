@@ -15,6 +15,7 @@ public class Calculator {
 
 		Scanner scanner = new Scanner(System.in);
 		String input;
+		System.out.print("> ");
 		while (!(input = scanner.next()).equals(EXIT_CODE)) {
 			try {
 				double value = Double.parseDouble(input);
@@ -36,6 +37,7 @@ public class Calculator {
 
 			if (state.hasError()) {
 				System.out.println(ERROR_CODE);
+				System.out.print("> ");
 				state.clearCurrentValue();
 				continue;
 			}
@@ -47,6 +49,7 @@ public class Calculator {
 				System.out.print(stackElement + " ");
 			}
 			System.out.println();
+			System.out.print("> ");
 		}
 	}
 
