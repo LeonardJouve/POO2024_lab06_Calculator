@@ -5,7 +5,7 @@ import util.Stack;
 public class State {
 	private Stack<Double> values = new Stack<>();
 
-	private StringBuilder pendingCurrentValue = new StringBuilder("0");
+	private StringBuilder pendingCurrentValue = new StringBuilder();
 	private boolean hasDecimalPoint = false;
 	private boolean hasCalculatedValue = false;
 
@@ -15,34 +15,28 @@ public class State {
 	// User input
 	public void addDigit(int digit) {
 		if (hasCalculatedValue()) {
-			pushValue(getCurrentValue());
+			pushCurrentValue();
 			hasCalculatedValue = false;
-		}
-
-		if (pendingCurrentValue.toString().equals("0")) {
-			pendingCurrentValue.deleteCharAt(0);
 		}
 
 		pendingCurrentValue.append(digit);
 	}
 
 	public void popDigit() {
+		if (pendingCurrentValue.isEmpty()) return;
+
 		if (pendingCurrentValue.charAt(pendingCurrentValue.length() - 1) == '.') {
 			hasDecimalPoint = false;
 		}
 
 		pendingCurrentValue.deleteCharAt(pendingCurrentValue.length() - 1);
-
-		if (pendingCurrentValue.isEmpty()) {
-			pendingCurrentValue.append("0");
-		}
 	}
 
 	public void addDecimalPoint() {
 		if (hasDecimalPoint) return;
 
 		hasDecimalPoint = true;
-		pendingCurrentValue.append('.');
+		pendingCurrentValue.append(pendingCurrentValue.isEmpty() ? "0." : ".");
 	}
 
 	public String getCurrentTextValue() {
@@ -50,7 +44,7 @@ public class State {
 	}
 
 	public void clearCurrentValue() {
-		pendingCurrentValue = new StringBuilder("0");
+		pendingCurrentValue = new StringBuilder();
 		hasDecimalPoint = false;
 		hasCalculatedValue = false;
 	}
@@ -60,7 +54,11 @@ public class State {
 	}
 
 	public double getCurrentValue() {
-		return Double.parseDouble(pendingCurrentValue.toString());
+		if (pendingCurrentValue.isEmpty()) {
+			return 0;
+		} else {
+			return Double.parseDouble(pendingCurrentValue.toString());
+		}
 	}
 
 	public void setCurrentValue(double newValue) {
@@ -91,8 +89,10 @@ public class State {
 		return values.pop();
 	}
 
-	public void pushValue(Double value) {
-		values.push(value);
+	public void pushCurrentValue() {
+		if (pendingCurrentValue.isEmpty()) return;
+
+		values.push(getCurrentValue());
 	}
 
 	public void clearStack() {
