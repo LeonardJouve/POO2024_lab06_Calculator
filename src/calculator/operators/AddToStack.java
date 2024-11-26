@@ -16,9 +16,7 @@ public class AddToStack extends Operator {
 	public void execute() {
 		if (hasError()) return;
 
-		double value = getState().getCurrentValue();
-
-		getState().pushValue(value);
+		getState().pushCurrentValue();
 		getState().clearCurrentValue();
 	}
 }

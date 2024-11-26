@@ -26,6 +26,6 @@ public abstract class UnaryOperator extends Operator {
 
         double operand = getState().getCurrentValue();
 
-        getState().setCurrentValue(operate(operand));
+        getState().setCalculatedValue(operate(operand));
     }
 }

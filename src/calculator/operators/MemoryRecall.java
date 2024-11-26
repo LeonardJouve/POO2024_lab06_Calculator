@@ -18,6 +18,6 @@ public class MemoryRecall extends Operator {
 
         double value = getState().getMemory();
 
-        getState().setCurrentValue(value);
+        getState().setCalculatedValue(value);
     }
 }
