@@ -32,6 +32,6 @@ public abstract class BinaryOperator extends Operator {
         double left = getState().popValue();
         double right = getState().getCurrentValue();
 
-        getState().setCurrentValue(operate(left, right));
+        getState().setCalculatedValue(operate(left, right));
     }
 }

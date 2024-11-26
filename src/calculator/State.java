@@ -65,6 +65,11 @@ public class State {
 
 	public void setCurrentValue(double newValue) {
 		pendingCurrentValue = new StringBuilder(String.valueOf(newValue));
+	}
+
+	public void setCalculatedValue(double newValue) {
+		setCurrentValue(newValue);
+
 		hasCalculatedValue = true;
 	}
 
